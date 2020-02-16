@@ -5,7 +5,7 @@ const restartGameButton = document.getElementById('restart-game');
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-let initialHiddenWords = ['KAMASUTRA', 'ATMOSPHERE', 'BASKETBALL', 'COMPLETION', 'COMPLIANCE', 'FOUNDATION', 'INSTRUMENT', 'TECHNIQUES'];
+let initialHiddenWords = ['KAMASUTRA', 'ATMOSPHERE', 'BASKETBALL', 'COMPLETION', 'COMPLIANCE', 'FOUNDATION', 'INSTRUMENT', 'INSTINCT', 'COMPUTER','DEVELOPER'];
 
 function pickRandomWord(wordsArray) {
     return wordsArray[Math.floor(Math.random() * wordsArray.length)]
@@ -67,7 +67,7 @@ function generalGameLogic() {
             if (guessedLettersCount == wordToGuess.length) (
                 guessedWordLettersContainers.forEach(function(elem){
                         console.log(elem);
-                        elem.setAttribute("style", "background-color:#2cbd4e; color: red; font-size: 24px; padding-top: 5px");
+                        elem.setAttribute("style", "background-color:#00ffbb; color: red; font-size: 16px");
                     }
                 )
             )
