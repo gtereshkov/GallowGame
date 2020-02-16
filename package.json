@@ -8,7 +8,9 @@
     "gulp-sass": "^4.0.2",
     "gulp": "^4.0.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "sweetalert": "^2.1.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
