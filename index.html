@@ -12,10 +12,26 @@
         <section class='hidden-word'>            
             <div id="hidden-word-container"></div>
         </section>
-        <section class='image'>            
-            <button id='start-game'>Start</button>
-            <br>
-            <button id='restart-game'>Restart</button>
+        <section class='image'>
+            <div class="controls">            
+                <button id='start-game'>Start</button>
+                <br>
+                <button id='restart-game'>Restart</button>
+            </div>
+            <div class="scores">
+                <div class="guessed-words">
+                    <div class="guesses-words_label">Guessed words count:</div>
+                    <div id="guesses-words_count"></div>
+                </div>
+                <div class="guessed-letters">
+                    <div class="guessed-letters_label">Letters guessed for current word:</div>
+                    <div id="guessed-letters_count"></div>
+                </div>
+                <div class="remaining-letters">
+                    <div class="remaining-letters_label">Non-guessed letters for current word:</div>
+                    <div id="remaining-letters_count"></div>
+                </div>
+            </div>
         </section>
         <section class='keyboard'>
             <div id="keyboard-container"></div>

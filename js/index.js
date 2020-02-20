@@ -2,6 +2,12 @@ const hiddenWordContainer = document.getElementById('hidden-word-container');
 const keyboardContainer = document.getElementById('keyboard-container');
 const startGameButton = document.getElementById('start-game');
 const restartGameButton = document.getElementById('restart-game');
+const guessedWordsCountContainer = document.getElementById('guesses-words_count');
+const guessedLettersCountContainer = document.getElementById('guessed-letters_count');
+const remainingLettersCountContainer = document.getElementById('remaining-letters_count');
+let guessedWordsCounter = 0;
+let guessedLettersCounter = 0;
+let remainingLettersCounter = 0;
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -35,15 +41,15 @@ function renderKeyboard (lettersArray) {
 function generalGameLogic() {
     startGameButton.disabled = true;
     let wordToGuess = pickRandomWord(initialHiddenWords);
+    remainingLettersCounter = wordToGuess.length;
     console.log(wordToGuess);   
     renderHiddenWordContainer(wordToGuess);
     renderKeyboard(alphabet);
 
     let guessedWordLettersContainers = document.querySelectorAll('.hidden-letter-container');
     let keyboardLetters = document.querySelectorAll('.keyboard-letter-container');
-    let guessedLettersCount = 0;
     keyboardLetters.forEach(function(elem) {
-        elem.addEventListener('click', function(e) {                
+        elem.addEventListener('click', function actionOnKeyboardClick(e) {             
             let pressedLetter = e.target.innerText;
             console.log(e.target.innerText);
             
@@ -51,11 +57,13 @@ function generalGameLogic() {
             for (let i = 0; i<=wordToGuess.length - 1; i++) {
                 if (pressedLetter == wordToGuess[i]){
                     matchingLettersPositions.push(i + 1);
+                    guessedLettersCounter++;
+                    guessedLettersCountContainer.innerHTML = guessedLettersCounter;
+                    remainingLettersCounter --;
+                    remainingLettersCountContainer.innerHTML = remainingLettersCounter;
                 };
             };
 
-            guessedLettersCount += matchingLettersPositions.length;
-            console.log("ugadano: " + guessedLettersCount, "vsegobukv: " + wordToGuess.length);
 
             if (matchingLettersPositions.length > 0) {
                 for (let i = 0; i<=matchingLettersPositions.length-1;i++){
@@ -64,13 +72,22 @@ function generalGameLogic() {
                 };
             }
 
-            if (guessedLettersCount == wordToGuess.length) (
+            if (guessedLettersCounter == wordToGuess.length) {
                 guessedWordLettersContainers.forEach(function(elem){
                         console.log(elem);
                         elem.setAttribute("style", "background-color:#00ffbb; color: red; font-size: 16px");
                     }
                 )
-            )
+                // keyboardLetters.forEach(function(elem) {
+                //         elem.removeEventListener('click', actionOnKeyboardClick)
+                //     }
+                // )                            
+                guessedWordsCounter++;
+                guessedWordsCountContainer.innerHTML = guessedWordsCounter;
+            };
+
+            this.setAttribute('style', 'background-color:#c1b6b6')
+            this.removeEventListener('click', actionOnKeyboardClick);
         })
     })    
 };
@@ -92,6 +109,10 @@ restartGameButton.addEventListener("click", function() {
             });
             hiddenWordContainer.innerHTML = "";
             keyboardContainer.innerHTML = "";
+            guessedLettersCounter = 0;
+            guessedLettersCountContainer.innerHTML = guessedLettersCounter;
+            remainingLettersCounter = 0;
+            remainingLettersCountContainer.innerHTML = remainingLettersCounter;
             generalGameLogic();
         } else {
             swal("Keep guessing current word!");
