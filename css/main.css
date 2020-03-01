@@ -2,6 +2,11 @@ body {
     font-family: 'Roboto', sans-serif; 
 }
 
+#particles-js {
+    height: 100vh;
+    background-color: aqua;
+}
+
 main {
     display: flex;
     flex-direction: column;
@@ -44,5 +49,10 @@ button {
 
 .swal-overlay {
     background-color: rgba(43, 165, 137, 0.45);
+}
+
+.score-item {
+    display: flex;
+    justify-content: start;
 }
 
